@@ -319,6 +319,7 @@ GameObject:
   - component: {fileID: 648213828}
   - component: {fileID: 648213827}
   - component: {fileID: 648213826}
+  - component: {fileID: 648213832}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -564,6 +565,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &648213832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648213825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1b485de1ea459f44a542b85affda363, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RotationAction: {fileID: 0}
+  m_PermittedRotationAxis: -1
 --- !u!1 &756192406
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,6 +887,7 @@ GameObject:
   - component: {fileID: 1527795584}
   - component: {fileID: 1527795583}
   - component: {fileID: 1527795582}
+  - component: {fileID: 1527795588}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -1117,6 +1133,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1527795588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527795581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dd2e41114c62b44fbd334ca5b314352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PermittedRotationAxis: -1
 --- !u!1 &1972799147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,6 +1160,7 @@ GameObject:
   - component: {fileID: 1972799150}
   - component: {fileID: 1972799149}
   - component: {fileID: 1972799148}
+  - component: {fileID: 1972799154}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1376,6 +1406,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1972799154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972799147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1b485de1ea459f44a542b85affda363, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RotationAction: {fileID: 4230072098959838277, guid: ebbe2046dc4b371498b4ec94f14fe2ad, type: 3}
+  m_PermittedRotationAxis: -1
 --- !u!1 &2092139007
 GameObject:
   m_ObjectHideFlags: 0
