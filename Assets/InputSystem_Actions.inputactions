@@ -42,7 +42,7 @@
                     "path": "<XRInputV1::Oculus::OculusTouchControllerRight>{LeftHand}/thumbstick/y",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Touch;XR",
                     "action": "RotateLeftTick",
                     "isComposite": false,
                     "isPartOfComposite": false

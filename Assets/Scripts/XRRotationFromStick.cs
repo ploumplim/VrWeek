@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 
 public class XRRotationFromStick : XRBaseGrabTransformer
 {
-    
     [SerializeField] private InputActionReference m_RotationAction;
+    [SerializeField] private InputActionReference m_RotationAction2;
     [SerializeField]
     [Tooltip("Defines which rotation axes are allowed when an object is grabbed. Axes not selected will maintain their initial rotation.")]
     XRGeneralGrabTransformer.ManipulationAxes m_PermittedRotationAxis = XRGeneralGrabTransformer.ManipulationAxes.All;
@@ -16,36 +16,53 @@ public class XRRotationFromStick : XRBaseGrabTransformer
     protected override RegistrationMode registrationMode => RegistrationMode.SingleAndMultiple;
 
     Vector3 m_InitialEulerRotation;
+    Vector3 m_PreviousInput;
 
     /// <inheritdoc />
     public override void OnLink(XRGrabInteractable grabInteractable)
     {
         base.OnLink(grabInteractable);
         m_InitialEulerRotation = grabInteractable.transform.rotation.eulerAngles;
+        m_PreviousInput = Vector3.zero;
     }
 
     /// <inheritdoc />
     public override void Process(XRGrabInteractable grabInteractable, XRInteractionUpdateOrder.UpdatePhase updatePhase, ref Pose targetPose, ref Vector3 localScale)
     {
-        int stickX, stickY;
         Vector2 input = m_RotationAction.action.ReadValue<Vector2>();
-        if (input.x > 0.8f)
-            stickX = 1;
-        else if (input.x < -0.8f)
-            stickX = -1;
-        else
-            stickX = 0;
-        
-        if (input.y > 0.8f)
-            stickY = 1;
-        else if (input.y < -0.8f)
-            stickY = -1;
-        else
-            stickY = 0;
-        
+
+        // Activer l'action avant de lire sa valeur
+        if (!m_RotationAction2.action.enabled)
+        {
+            m_RotationAction2.action.Enable();
+        }
+
+        float input2 = m_RotationAction2.action.ReadValue<float>();
+
+        Debug.Log(input2);
+
+        int stickX = Mathf.Abs(input.x) > 0.8f ? (int)Mathf.Sign(input.x) : 0;
+        int stickY = Mathf.Abs(input.y) > 0.8f ? (int)Mathf.Sign(input.y) : 0;
+        int stickZ = Mathf.Abs(input2) > 0.8f ? (int)Mathf.Sign(input2) : 0;
+
         Vector3 newRotationEuler = targetPose.rotation.eulerAngles;
-        Vector3 rot = new Vector3(stickX * 45f, stickY * 45f, 0);
-        newRotationEuler += rot;
+
+        if (stickX != 0 && m_PreviousInput.x == 0)
+        {
+            newRotationEuler.x += stickX * 45f;
+        }
+
+        if (stickY != 0 && m_PreviousInput.y == 0)
+        {
+            newRotationEuler.y += stickY * 45f;
+        }
+
+        if (stickZ != 0 && m_PreviousInput.z == 0)
+        {
+            newRotationEuler.z += stickZ * 45f;
+        }
+
+        m_PreviousInput = new Vector3(stickX, stickY, stickZ);
 
         if ((m_PermittedRotationAxis & XRGeneralGrabTransformer.ManipulationAxes.X) == 0)
             newRotationEuler.x = m_InitialEulerRotation.x;
@@ -59,4 +76,3 @@ public class XRRotationFromStick : XRBaseGrabTransformer
         targetPose.rotation = Quaternion.Euler(newRotationEuler);
     }
 }
-
