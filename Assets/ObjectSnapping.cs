@@ -41,14 +41,29 @@ public class ObjectSnapping : MonoBehaviour
         Ray ray = new Ray(controllerTransform.position, controllerTransform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, wallLayer))
         {
-            transform.position = hit.point;
-            transform.rotation = Quaternion.LookRotation(hit.normal) * Quaternion.Euler(0, 180, 0);
+            
+            transform.position = RoundVar(hit.point);
+            transform.rotation = RoundAngle(transform.rotation.eulerAngles);
             rb.isKinematic = true;
             rb.useGravity = false;
+            
         } else {
             rb.isKinematic = false;
             rb.useGravity = true;
         }
+    }
+
+    public Vector3 RoundVar(Vector3 vectorToRound)
+    {
+        return new Vector3(Mathf.Round(vectorToRound.x), Mathf.Round(vectorToRound.y), Mathf.Round(vectorToRound.z));
+    }
+
+    public Quaternion RoundAngle(Vector3 angle)
+    {
+        float x =  Mathf.Round(angle.x / 90.0f) * 90.0f;
+        float y =  Mathf.Round(angle.y / 90.0f) * 90.0f;
+        float z =  Mathf.Round(angle.z / 90.0f) * 90.0f;
+        return Quaternion.Euler(x, y, z);
     }
     
     private void OnDrawGizmos()
