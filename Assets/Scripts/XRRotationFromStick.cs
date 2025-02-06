@@ -39,8 +39,6 @@ public class XRRotationFromStick : XRBaseGrabTransformer
 
         float input2 = m_RotationAction2.action.ReadValue<float>();
 
-        Debug.Log(input2);
-
         int stickX = Mathf.Abs(input.x) > 0.8f ? (int)Mathf.Sign(input.x) : 0;
         int stickY = Mathf.Abs(input.y) > 0.8f ? (int)Mathf.Sign(input.y) : 0;
         int stickZ = Mathf.Abs(input2) > 0.8f ? (int)Mathf.Sign(input2) : 0;
